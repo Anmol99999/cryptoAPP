@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-import CoinbaseLogo from '../assets/cb-logo.png'
-import Image from 'next/image'
+import { useState } from "react";
+import styled from "styled-components";
+import CoinbaseLogo from "../assets/cb-logo.png";
+import Image from "next/image";
+import {
+  AiOutlinePieChart,
+  AiOutlinePlusCircle,
+  AiOutlineGift,
+} from "react-icons/ai";
+import { BiTrendingUp } from "react-icons/bi";
+import { RiCoinsLine, RiNotification3Line } from "react-icons/ri";
+import { MdWeb } from "react-icons/md";
+import { BsPersonPlus } from "react-icons/bs";
 
-import { navItems } from '../static/navItems'
+import { navItems } from "../static/navItems";
 
 const Sidebar = () => {
-  const [activeIcon, setActiveIcon] = useState(navItems[0].title)
+  const [activeIcon, setActiveIcon] = useState(navItems[0].title);
 
   return (
     <Wrapper>
       <LogoContainer>
         <Logo>
-          <Image src={CoinbaseLogo} alt='Coinbase Logo' />
+          <Image src={CoinbaseLogo} alt="Coinbase Logo" />
         </Logo>
       </LogoContainer>
       <NavItemsContainer>
-        {navItems.map(item => (
-          <NavItem key={item.title} onClick={() => setActiveIcon(item.title)}>
-            <NavIcon style={{ color: item.title === activeIcon && '#3773f5' }}>
-              {item.icon}
-            </NavIcon>
-            <NavTitle>{item.title}</NavTitle>
-          </NavItem>
-        ))}
+        <NavItem>
+          <NavIcon>
+            <AiOutlineGift />
+          </NavIcon>
+          <NavTitle>Pay</NavTitle>
+        </NavItem>
+      </NavItemsContainer>
+      <NavItemsContainer>
+        <NavItem>
+          <NavIcon>
+            <AiOutlineGift />
+          </NavIcon>
+          <a href="https://crytpocoin.netlify.app/" target="_blank">
+            Coins
+          </a>
+        </NavItem>
       </NavItemsContainer>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
 
 const Wrapper = styled.div`
   height: calc(100vh);
@@ -37,24 +54,24 @@ const Wrapper = styled.div`
   width: calc(22rem - 16px - 16px);
   /* TRouBLe */
   padding: 0 1rem;
-`
+`;
 const LogoContainer = styled.div`
   /* TRouBLe */
   margin: 1.5rem 0;
-`
+`;
 
 const Logo = styled.div`
   width: 44%;
   object-fit: contain;
   margin-left: 1.5rem;
-`
+`;
 
 const NavItemsContainer = styled.div`
   margin-top: 3rem;
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const NavItem = styled.div`
   display: flex;
@@ -67,7 +84,7 @@ const NavItem = styled.div`
   &:hover {
     background-color: #141519;
   }
-`
+`;
 
 const NavIcon = styled.div`
   background-color: #141519;
@@ -76,6 +93,6 @@ const NavIcon = styled.div`
   margin: 0 1rem;
   display: grid;
   place-items: center;
-`
+`;
 
-const NavTitle = styled.div``
+const NavTitle = styled.div``;
