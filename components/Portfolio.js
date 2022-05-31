@@ -8,7 +8,7 @@ import CoinItemTable from "./CoinItemTable";
 import axios from "axios";
 
 const Portfolio = ({ walletAddress, sanityTokens, thirdWebTokens }) => {
-  const [walletBalance, setWalletBalance] = useState(0);
+  const [walletBalance, setWalletBalance] = useState([]);
   const [bt, setBt] = useState(0);
   const [et, setEt] = useState(0);
   const [sl, setSl] = useState(0);
@@ -52,13 +52,11 @@ const Portfolio = ({ walletAddress, sanityTokens, thirdWebTokens }) => {
         thirdWebTokens.map(async (token) => {
           const balance = await token.balanceOf(walletAddress);
           i++;
-          return pricesarray[i];
+          return Number(balance.displayValue);
         })
       );
       console.log(totalBalance);
-      let total = totalBalance.reduce((acc, curr) => acc + curr, 0);
-      setWalletBalance(total);
-      console.log(total);
+      setWalletBalance(totalBalance);
     };
 
     calculateTotalBalance();
@@ -73,11 +71,59 @@ const Portfolio = ({ walletAddress, sanityTokens, thirdWebTokens }) => {
               <BalanceTitle>Portfolio Balance</BalanceTitle>
               <BalanceValue>
                 {"Rs."}
-                {walletBalance.toLocaleString()}
+                {(
+                  walletBalance[0] * et +
+                  walletBalance[1] * bt +
+                  walletBalance[2] * sl
+                ).toString()}
               </BalanceValue>
             </Balance>
           </div>
-          <BalanceChart />
+          <div
+            style={{
+              height: 560,
+              backgroundColor: "#1D2330",
+              overflow: "hidden",
+              boxSizing: "border-box",
+              border: "1px solid #282E3B",
+              borderRadius: 4,
+              textAlign: "right",
+              lineHeight: 14,
+              fontSize: 12,
+              fontFeatureSettings: "normal",
+              textSizeAdjust: "100%",
+              boxShadow: "inset 0 -20px 0 0 #262B38",
+              padding: 0,
+              margin: 0,
+              width: "100%",
+            }}
+          >
+            <div style={{ height: 540, padding: 0, margin: 0, width: "100%" }}>
+              <iframe
+                src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1530"
+                width="100%"
+                height="536px"
+                scrolling="auto"
+                marginWidth={0}
+                marginHeight={0}
+                frameBorder={0}
+                border={0}
+                style={{ border: 0, margin: 0, padding: 0, lineHeight: 14 }}
+              />
+            </div>
+            <div
+              style={{
+                color: "#626B7F",
+                lineHeight: 14,
+                fontWeight: 400,
+                fontSize: 11,
+                boxSizing: "border-box",
+                padding: "2px 6px",
+                width: "100%",
+                fontFamily: "Verdana, Tahoma, Arial, sans-serif",
+              }}
+            ></div>
+          </div>
         </Chart>
 
         <PortfolioTable>

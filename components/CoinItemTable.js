@@ -41,10 +41,10 @@ const CoinItemTable = ({
       setSl(SolPrice);
     };
     getPrices();
-  }, [sl, bt, et]);
+    setPrices([et, bt, sl]);
+  }, [sl, bt, et, prices]);
 
   useEffect(() => {
-    setPrices([et, bt, sl]);
     const getBalance = async () => {
       let activeTwToken;
 

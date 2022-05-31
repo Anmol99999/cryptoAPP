@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import CoinbaseLogo from "../assets/cb-logo.png";
 import Image from "next/image";
+import Link from "next/dist/client/link";
 import {
   AiOutlinePieChart,
   AiOutlinePlusCircle,
@@ -14,20 +15,25 @@ import { BsPersonPlus } from "react-icons/bs";
 
 import { navItems } from "../static/navItems";
 
-const Sidebar = () => {
+const Sidebar = ({ setColor, color }) => {
   const [activeIcon, setActiveIcon] = useState(navItems[0].title);
+
+  let settheme = () => {
+    if (color == "black") return setColor("slate-800");
+    else return setColor("black");
+  };
 
   return (
     <Wrapper>
       <LogoContainer>
-        <Logo>
-          <Image src={CoinbaseLogo} alt="Coinbase Logo" />
-        </Logo>
+        <h3 className=" text-blue-500 font-bold text-4xl text-center my-2k">
+          Crytpo<span className=" text-blue-800">Coin</span>
+        </h3>
       </LogoContainer>
       <NavItemsContainer>
         <NavItem>
           <NavIcon>
-            <AiOutlineGift />
+            <AiOutlinePlusCircle />
           </NavIcon>
           <NavTitle>Pay</NavTitle>
         </NavItem>
@@ -35,11 +41,45 @@ const Sidebar = () => {
       <NavItemsContainer>
         <NavItem>
           <NavIcon>
-            <AiOutlineGift />
+            <RiCoinsLine />
           </NavIcon>
-          <a href="https://crytpocoin.netlify.app/" target="_blank">
+          <a
+            href="https://crytpocoin.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Coins
           </a>
+        </NavItem>
+      </NavItemsContainer>
+      <NavItemsContainer>
+        <NavItem>
+          <NavIcon>
+            <BiTrendingUp />
+          </NavIcon>
+          <Link href="/Transactions" target="_self">
+            Transaction List
+          </Link>
+        </NavItem>
+      </NavItemsContainer>
+      <NavItemsContainer>
+        <NavItem>
+          <NavIcon>
+            <BsPersonPlus />
+          </NavIcon>
+          <Link href="/CoinsAr" target="_self">
+            CoinsAr
+          </Link>
+        </NavItem>
+      </NavItemsContainer>
+      <NavItemsContainer>
+        <NavItem>
+          <NavIcon>
+            <BiTrendingUp />
+          </NavIcon>
+          <Link href="/Tutorial" target="_self">
+            Tutorial
+          </Link>
         </NavItem>
       </NavItemsContainer>
     </Wrapper>

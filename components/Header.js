@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import { useRouter } from "next/router";
 import TransferModal from "./modal/TransferModal";
 import Link from "next/link";
+import Buymoney from "./modal/Buymoney";
+import { useWeb3 } from "@3rdweb/hooks";
 
 Modal.setAppElement("#__next");
 
@@ -35,12 +37,18 @@ const Header = ({
     <Wrapper>
       <Title>Assets</Title>
       <ButtonsContainer>
-        <WalletLink>
-          <WalletLinkTitle>Wallet Connected</WalletLinkTitle>
-          <WalletAddress>
-            {walletAddress.slice(0, 8)}...{walletAddress.slice(35)}
-          </WalletAddress>
-        </WalletLink>
+        {walletAddress ? (
+          <WalletLink>
+            <WalletLinkTitle>Wallet Connected</WalletLinkTitle>
+            <WalletAddress>
+              {walletAddress.slice(0, 8)}...{walletAddress.slice(35)}
+            </WalletAddress>
+          </WalletLink>
+        ) : (
+          <Button onClick={() => connectWallet("injected")}>
+            Connect Wallet
+          </Button>
+        )}
         <Link
           href={"/?transfer=1"}
           style={{ backgroundColor: "#3773f5", color: "#000" }}
@@ -48,6 +56,12 @@ const Header = ({
           <Button style={{ backgroundColor: "#3773f5", color: "#000" }}>
             Send / Receive
           </Button>
+        </Link>
+        <Link
+          href={"/?buy=1"}
+          style={{ backgroundColor: "#3773f5", color: "#000" }}
+        >
+          <Button className=" bg-sky-900">Buy / Sell</Button>
         </Link>
       </ButtonsContainer>
       <Modal
@@ -60,6 +74,13 @@ const Header = ({
           thirdWebTokens={thirdWebTokens}
           walletAddress={walletAddress}
         />
+      </Modal>
+      <Modal
+        isOpen={!!router.query.buy}
+        onRequestClose={() => router.push("/")}
+        style={customStyles}
+      >
+        <Buymoney />
       </Modal>
     </Wrapper>
   );

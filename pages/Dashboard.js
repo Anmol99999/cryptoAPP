@@ -18,6 +18,7 @@ const sdk = new ThirdwebSDK(
 const Dashboard = ({ address }) => {
   const [sanityTokens, setSanityTokens] = useState([]);
   const [thirdWebTokens, setThirdWebTokens] = useState([]);
+  const [color, setColor] = useState("slate-800");
 
   useEffect(() => {
     const getSanityAndThirdWebTokens = async () => {
@@ -35,21 +36,75 @@ const Dashboard = ({ address }) => {
   }, []);
 
   return (
-    <Wrapper style={{ overflow: "hidden" }}>
-      <Sidebar />
-      <MainContainer>
-        <Header
-          walletAddress={address}
-          sanityTokens={sanityTokens}
-          thirdWebTokens={thirdWebTokens}
-        />
-        <Main
-          walletAddress={address}
-          sanityTokens={sanityTokens}
-          thirdWebTokens={thirdWebTokens}
-        />
-      </MainContainer>
-    </Wrapper>
+    <>
+      <div
+        style={{
+          height: 62,
+          backgroundColor: "#000000",
+          overflow: "hidden",
+          boxSizing: "border-box",
+          border: "1px solid #282E3B",
+          borderRadius: 4,
+          textAlign: "right",
+          lineHeight: 14,
+          blockSize: 62,
+          fontSize: 12,
+          fontFeatureSettings: "normal",
+          textSizeAdjust: "100%",
+          boxShadow: "inset 0 -20px 0 0 #262B38",
+          padding: 0,
+          margin: 0,
+          width: "100%",
+        }}
+      >
+        <div style={{ height: 40, padding: 0, margin: 0, width: "100%" }}>
+          <iframe
+            src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=dark&pref_coin_id=1530&invert_hover=no"
+            width="100%"
+            height="36px"
+            scrolling="auto"
+            marginWidth={0}
+            marginHeight={0}
+            frameBorder={0}
+            border={0}
+            style={{ border: 0, margin: 0, padding: 0 }}
+          />
+        </div>
+        <div
+          style={{
+            color: "#626B7F",
+            lineHeight: 14,
+            fontWeight: 400,
+            fontSize: 11,
+            boxSizing: "border-box",
+            padding: "2px 6px",
+            width: "100%",
+            fontFamily: "Verdana, Tahoma, Arial, sans-serif",
+          }}
+        ></div>
+      </div>
+      <div className="h-6 bg-white"></div>
+
+      <Wrapper
+        className={` bg-black overflow-hidden`}
+        style={{ overflow: "hidden" }}
+      >
+        <Sidebar setColor={setColor} color={color} />
+
+        <MainContainer>
+          <Header
+            walletAddress={address}
+            sanityTokens={sanityTokens}
+            thirdWebTokens={thirdWebTokens}
+          />
+          <Main
+            walletAddress={address}
+            sanityTokens={sanityTokens}
+            thirdWebTokens={thirdWebTokens}
+          />
+        </MainContainer>
+      </Wrapper>
+    </>
   );
 };
 
@@ -57,7 +112,6 @@ const Wrapper = styled.div`
   display: flex;
   height: 100vh;
   width: 100vw;
-  background-color: #0a0b0d;
   color: white;
   overflow: hidden;
 `;
