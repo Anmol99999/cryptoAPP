@@ -15,7 +15,7 @@ export default function Home() {
             Connect Wallet
           </Button>
           <Details>
-            You need Chrome to be
+           Coonect to metamask to be
             <br /> able to run this app.
           </Details>
         </WalletConnect>
