@@ -57,9 +57,9 @@ const Sidebar = ({ setColor, color }) => {
           <NavIcon>
             <BiTrendingUp />
           </NavIcon>
-          <Link href="/Transactions" target="_self">
+          <a href="/Transactions" target="_self">
             Transaction List
-          </Link>
+          </a>
         </NavItem>
       </NavItemsContainer>
       <NavItemsContainer>
@@ -67,9 +67,9 @@ const Sidebar = ({ setColor, color }) => {
           <NavIcon>
             <BsPersonPlus />
           </NavIcon>
-          <Link href="/CoinsAr" target="_self">
+          <a href="/CoinsAr" target="_self">
             CoinsAr
-          </Link>
+          </a>
         </NavItem>
       </NavItemsContainer>
       <NavItemsContainer>
@@ -77,9 +77,9 @@ const Sidebar = ({ setColor, color }) => {
           <NavIcon>
             <BiTrendingUp />
           </NavIcon>
-          <Link href="/Tutorial" target="_self">
+          <a href="/Tutorial" target="_self">
             Tutorial
-          </Link>
+          </a>
         </NavItem>
       </NavItemsContainer>
     </Wrapper>
