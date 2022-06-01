@@ -94,7 +94,7 @@ function Transactions() {
             Latest Transactions
           </h3>
           <div className="flex flex-wrap justify-center items-center mt-10">
-              { (List===[]||List||null||List||undefined)?(<div className="text-white w-full h-full">No Transaction</div>): (<div className="flex flex-wrap justify-center items-center mt-10">
+              { (List===[])?(<div className="text-white w-full h-full">No Transaction</div>):(<div className="flex flex-wrap justify-center items-center mt-10">
             {List.map((userList) => (
               <TransactionsCard key={userList.timeStamp} userdata={userList} />
             ))}
