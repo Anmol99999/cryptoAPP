@@ -57,9 +57,9 @@ const Sidebar = ({ setColor, color }) => {
           <NavIcon>
             <BiTrendingUp />
           </NavIcon>
-          <a href="/Transactions" target="_self">
+          <Link href="/Transactions" target="_self">
             Transaction List
-          </a>
+          </Link>
         </NavItem>
       </NavItemsContainer>
       <NavItemsContainer>
